@@ -1,0 +1,41 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "start_timestamp": "2020-04-04T16:48:32.539Z",
+        "line": 9,
+        "name": "Login as driver",
+        "description": "",
+        "id": "login;login-as-driver",
+        "type": "scenario",
+        "keyword": "Scenario",
+        "steps": [
+          {
+            "result": {
+              "duration": 3817317,
+              "status": "passed"
+            },
+            "line": 10,
+            "name": "user is on the login page",
+            "match": {
+              "location": "LoginStepDefinitions.user_is_on_the_login_page()"
+            },
+            "keyword": "Given "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@Check"
+          }
+        ]
+      }
+    ],
+    "name": "Login",
+    "description": "  As user, I want to be able to log in under different roles with username and password.",
+    "id": "login",
+    "keyword": "Feature",
+    "uri": "file:src/test/resources/features/login.feature",
+    "tags": []
+  }
+]
