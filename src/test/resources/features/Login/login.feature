@@ -7,7 +7,7 @@ Feature: Login
 
 
   Scenario Outline: Login as <role>
-    Given user logs i n as a "<role>"
+    Given user logs in as a "<role>"
     And user verify "<subtitle>" subtitle is displayed
     Examples:
       | role          | subtitle        |
