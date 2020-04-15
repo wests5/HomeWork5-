@@ -7,7 +7,7 @@ import java.util.Properties;
 public class ConfigurationsReader {
     private static Properties configFile;
 
-    static{
+    static {
         try {
             /**
              * Provide access to our properties file.
@@ -23,10 +23,11 @@ public class ConfigurationsReader {
 
     /**
      * Method to get property depends on key
+     *
      * @param key
      * @return Value of property
      */
-    public static String getProperty(String key){
+    public static String getProperty(String key) {
         return configFile.getProperty(key);
     }
 
