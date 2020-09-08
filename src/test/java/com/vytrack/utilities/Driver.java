@@ -2,14 +2,16 @@ package com.vytrack.utilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class Driver {
     private static WebDriver driver;
-   // private static ThreadLocal<WebDriver> driverPool = new ThreadLocal<>();
+  // private static ThreadLocal<WebDriver> driverPool = new ThreadLocal<>();
 
     /**
      * private default constructor to prevent creating object of Driver class.
@@ -23,11 +25,13 @@ public class Driver {
      * @return
      */
     public static WebDriver getDriver(){
+
         String browserName = ConfigurationsReader.getProperty("browser");
         if(driver==null){
             if(browserName.equals("chrome")) {
                 WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver();
+
             }else if(browserName.equals("headless chrome")){
                 WebDriverManager.chromedriver().setup();
                 ChromeOptions options = new ChromeOptions();
@@ -40,6 +44,7 @@ public class Driver {
             }else if(browserName.equals("IE")){
                 WebDriverManager.iedriver().setup();
                 driver = new InternetExplorerDriver();
+                
             }
         }
         return driver;

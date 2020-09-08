@@ -14,6 +14,7 @@ public class LoginStepDefinitions {
     public void user_is_on_login_page() {
         Driver.getDriver().get(ConfigurationsReader.getProperty("url"));
 
+
     }
 
     @Given("user logs in as a {string}")
@@ -33,6 +34,7 @@ public class LoginStepDefinitions {
     @Then("use verify {string} messege is displayed")
     public void use_verify_messege_is_displayed(String str) {
         Assert.assertEquals(str, loginPage.invalidCredentialsAlert.getText());
+
     }
 
 }

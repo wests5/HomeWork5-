@@ -5,16 +5,19 @@ import com.vytrack.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.eo.Se;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
+import org.junit.Test;
+import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.*;
 
+import javax.sql.rowset.WebRowSet;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class CalendarEventsStepDefinitions {
@@ -121,6 +124,8 @@ public class CalendarEventsStepDefinitions {
             Driver.getDriver().findElement(By.xpath("//ul[@class='ui-timepicker-list']/li[text()='" + each.get("start time") + "']")).click();
             Assert.assertEquals(each.get("end time"), calendarEventsPage.endTime.getAttribute("value"));
 
+        WebDriverWait wait = new WebDriverWait(Driver.getDriver(), 1);
+           
 
         }
     }
@@ -222,6 +227,52 @@ public class CalendarEventsStepDefinitions {
         for (String each : dataTable) {
             Assert.assertTrue(Driver.getDriver().findElement(By.cssSelector(".multi-checkbox-control__item>input[value='"+each+"']")).isSelected());
         }
+    }
+
+
+
+
+    @Test
+    public void tess(){
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
+        WebDriverWait wait = new WebDriverWait(driver, 3);
+
+        driver.get("http://www.hotwire.com/");
+
+       WebElement flights = driver.findElement(By.cssSelector("[data-bdd='farefinder-option-flights']"));
+
+       wait.until(ExpectedConditions.elementToBeClickable(flights));
+       flights.click();
+
+        WebElement origin = driver.findElement(By.cssSelector("[placeholder='Origin city or airport']"));
+        wait.until(ExpectedConditions.visibilityOf(origin));
+        origin.sendKeys("SFO");
+
+        WebElement destination = driver.findElement(By.cssSelector("[placeholder='Destination city or airport']"));
+        destination.sendKeys("LAX");
+
+        WebElement startDate = driver.findElement(By.xpath("//input[@name='startDate']"));
+
+
+        startDate.sendKeys("");
+        String start =LocalDate.now().plusDays(1).format(DateTimeFormatter.ofPattern("MMMM dd, yyyy"));
+
+        WebElement sdate =driver.findElement(By.xpath("//td[starts-with(@aria-label,'"+start+"')]/div/div/div/div"));
+        wait.until(ExpectedConditions.elementToBeClickable(sdate));
+
+        WebElement returnDate = driver.findElement(By.xpath("//input[@name='endDate']"));
+
+        returnDate.sendKeys(LocalDate.now().plusDays(8).format(DateTimeFormatter.ofPattern("MM/dd/yyyy")));
+
+        driver.findElement(By.xpath("//div[@class='submit-button']/button")).click();
+
+
+
+       driver.quit();
+
+
+
     }
 
 }

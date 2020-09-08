@@ -13,6 +13,7 @@ public class DBUtils {
         try {
             connection = DriverManager.getConnection(url, username, password);
             statement = connection.createStatement();
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

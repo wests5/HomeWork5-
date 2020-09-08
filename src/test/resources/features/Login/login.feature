@@ -15,10 +15,11 @@ Feature: Login
       | sales manager | Dashboard       |
       | driver        | Quick Launchpad |
 
-  @negative_login
+
   Scenario Outline: Log in with invalid credentials
     Given user logs in with invalid credentials "<username>" and "<password>"
     Then use verify "Invalid user name or password." messege is displayed
+
     Examples:
       | username | password    |
       | invalid  | invalid     |

@@ -7,6 +7,7 @@ import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.support.ui.Select;
 
 public class Hook {
 
@@ -16,7 +17,7 @@ public class Hook {
 
 
     }
-    @After
+    @After()
     public void tearDown(Scenario scenario){
         if(scenario.isFailed()){
             byte[] screenshot = ((TakesScreenshot)Driver.getDriver()).getScreenshotAs(OutputType.BYTES);
@@ -25,6 +26,8 @@ public class Hook {
 
 
         Driver.close();
+
+
     }
 
 
